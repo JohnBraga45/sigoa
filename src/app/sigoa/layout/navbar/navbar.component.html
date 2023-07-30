@@ -1,43 +1,50 @@
-<div class="navbar">
-  <li>
-    <a routerLink="/" ariaCurrentWhenActive="page" [routerLink]="['/']"><i class="fas fa-tachometer-alt"></i> Painel de
-      Controle</a>
-  </li>
-  <li>
-    <a routerLink="/" ariaCurrentWhenActive="page" [routerLink]="['/piquete']"><i class="fas fa-map-marker-alt"></i>
-      Piquete</a>
-  </li>
+<nav class="navbar navbar-expand-lg navbar-dark bg-main ">
+  <!-- Ícone do menu responsivo -->
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-  <li>
-    <a routerLink="/" ariaCurrentWhenActive="page" [routerLink]="['/autos']"><i class="fas fa-file-alt"></i> Autos</a>
-  </li>
-  <li>
-    <a routerLink="/" ariaCurrentWhenActive="page" [routerLink]="['/delituoso']"><i
-        class="fas fa-exclamation-circle"></i> Potencial Delituoso</a>
-  </li>
-  <li>
-    <a routerLink="/" ariaCurrentWhenActive="page" [routerLink]="['/grupos']"><i class="fas fa-users"></i> Grupos</a>
-  </li>
-  <li>
-    <a routerLink="/" ariaCurrentWhenActive="page" [routerLink]="['/processos']"><i class="fas fa-folder-open"></i>
-      Processos</a>
-  </li>
-  <li>
-    <a routerLink="/" ariaCurrentWhenActive="page" [routerLink]="['/participantes']"><i class="fas fa-users"></i>
-      Participantes</a>
-  </li>
-  <li>
-    <a routerLink="/" ariaCurrentWhenActive="page" [routerLink]="['/mandatos']"><i class="fas fa-gavel"></i>
-      Mandatos</a>
-  </li>
+  <!-- Itens da Navbar -->
+  <div class="collapse navbar-collapse ml-4" id="navbarNav">
+    <ul class="navbar-nav  ">
+      <li class="nav-item mr-4">
+        <a class="nav-link" routerLink="/" routerLinkActive="active"><i class="fas fa-tachometer-alt"></i> Painel de Controlo</a>
+      </li>
 
-  <li>
-    <a routerLink="/" ariaCurrentWhenActive="page" [routerLink]="['/vitimas']"><i class="fas fa-user-injured"></i>
-      Vítimas</a>
-  </li>
+      <li class="nav-item  mr-4">
+        <a class="nav-link" routerLink="/piquete" routerLinkActive="active"><i class="fas fa-map-marker-alt"></i> Piquete</a>
+      </li>
+      <li class="nav-item  mr-4">
+        <a class="nav-link  mr-1" routerLink="/autos" routerLinkActive="active"><i class="fas fa-file-alt"></i> Autos</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link  mr-4" routerLink="/delituoso" routerLinkActive="active"><i class="fas fa-exclamation-circle"></i> Potencial Delituoso</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link  mr-4" routerLink="/grupos" routerLinkActive="active"><i class="fas fa-users"></i> Grupos</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link  mr-4" routerLink="/processos" routerLinkActive="active"><i class="fas fa-folder-open"></i> Processos</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link  mr-4" routerLink="/participantes" routerLinkActive="active"><i class="fas fa-users"></i> Participantes</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link  mr-4" routerLink="/mandatos" routerLinkActive="active"><i class="fas fa-gavel"></i> Mandatos</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link  mr-4" routerLink="/vitimas" routerLinkActive="active"><i class="fas fa-user-injured"></i> Vítimas</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link  mr-4" routerLink="/decisao" routerLinkActive="active"><i class="fas fa-balance-scale"></i> Decisão do Tribunal</a>
+      </li>
+      <li class="nav-item mr-4">
+        <a class="nav-link" routerLink="/" routerLinkActive="active"><i class="fas fa-tachometer-alt"></i> Exames Forenses</a>
+      </li>
 
-  <li>
-    <a routerLink="/" ariaCurrentWhenActive="page" [routerLink]="['/decisao']"><i class="fas fa-balance-scale"></i>
-      Decisão do Tribunal</a>
-  </li>
-</div>
+      <li class="nav-item  mr-4">
+        <a class="nav-link" routerLink="/piquete" routerLinkActive="active"><i class="fas fa-map-marker-alt"></i> Empresas</a>
+      </li>
+    </ul>
+  </div>
+</nav>

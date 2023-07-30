@@ -1,1 +1,172 @@
-<p>dashboard works!</p>
+<div class="container-fluid">
+  <div class="content">
+    <div class="system"></div>
+    <br />
+    <div class="row">
+      <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+        <div id="colunc" class="dash-widget">
+          <span id="bookr" class="dash-widget-bg3"
+            ><a
+              style="color: white; text-decoration: none"
+              routerLink="/piquete"
+              ><i class="fas fa-map-marker-alt" aria-hidden="true"></i></a
+          ></span>
+          <div class="dash-widget-info text-right">
+            <h3>19</h3>
+            <span id="bookr" class="widget-title3"
+              >Piquete<i class="fa fa-check" aria-hidden="true"></i
+            ></span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+        <div id="colunc" class="dash-widget">
+          <span id="bookr" class="dash-widget-bg3"
+            ><a
+              style="color: white; text-decoration: none"
+              routerLink="/processos"
+              ><i class="fas fa-folder-open"></i></a
+          ></span>
+          <div class="dash-widget-info text-right">
+            <h3>30</h3>
+            <span id="bookr" class="widget-title3"
+              >Processos<i class="fa fa-check" aria-hidden="true"></i
+            ></span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+        <div id="colunc" class="dash-widget">
+          <span id="bookr" class="dash-widget-bg3"
+            ><a
+              style="color: white; text-decoration: none"
+              routerLink="/mandatos"
+              ><i class="fas fa-gavel" aria-hidden="true"></i></a
+          ></span>
+          <div class="dash-widget-info text-right">
+            <h3>233</h3>
+            <span id="bookr" class="widget-title3"
+              >Mandatos<i class="fa fa-check" aria-hidden="true"></i
+            ></span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+        <div id="colunc" class="dash-widget">
+          <span id="bookr" class="dash-widget-bg3"
+            ><a
+              style="color: white; text-decoration: none"
+              routerLink="/vitimas"
+              ><i class="fas fa-user-injured" aria-hidden="true"></i></a
+          ></span>
+          <div class="dash-widget-info text-right">
+            <h3>4</h3>
+            <span id="bookr" class="widget-title3"
+              >Vítimas<i class="fa fa-check" aria-hidden="true"></i
+            ></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="colunc" class="row">
+      <div class="col-12 col-md-6 col-lg-8 col-xl-8">
+        <div id="colunc" class="card">
+          <div class="card-header">
+            <h4 class="card-title d-inline-block"><b>Estatísticas</b></h4>
+            <a
+              routerLink="/piquete"
+              id="book"
+              class="btn btn-secondary float-right"
+              ><b>Ver todas</b></a
+            >
+          </div>
+          <div class="card-body p-0">
+            <div class="table-responsive">
+              <table class="table mb-0">
+                <img
+                  class="d-flex"
+                  style="width: 60%; margin-left: 20%; "
+                  src="../assets/img/grafico.png"
+                  alt="Logo"
+                />
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="colunc" class="col-12 col-md-6 col-lg-4 col-xl-4">
+        <div id="colunc" class="card member-panel">
+          <div id="colunc" class="card-header bg-white">
+            <div class="card-header">
+              <h4 class="card-title d-inline-block">
+                <b>Ocorrências Recentes</b>
+              </h4>
+              <a
+                routerLink="/piquete"
+                id="book"
+                class="btn btn-secondary float-right"
+                ><b>Ver todos</b></a
+              >
+            </div>
+          </div>
+          <table class="table table-striped custom-table">
+            <thead>
+              <tr>
+                <th>Data</th>
+                <th>Título</th>
+                <th>Tipicidade</th>
+                <th>Operações</th>
+              </tr>
+            </thead>
+            <tbody >
+              <!-- Usando a diretiva *ngFor com slice para exibir apenas 5 itens -->
+        <tr *ngFor="let occurrence of filteredOccurrences.slice(0, 5)">
+                <td>{{ occurrence.Data}}</td>
+                <td> {{ occurrence.Titulo}} </td>
+                <td>{{ occurrence.Tipicidade}}</td>
+
+                <td class="text-right">
+                  <div class="dropdown dropdown-action">
+                    <a
+                      href="#"
+                      class="action-icon dropdown-toggle"
+                      data-toggle="dropdown"
+                      aria-expanded="false"
+                      ><i class="fa fa-ellipsis-v"></i
+                    ></a>
+                    <div class="dropdown-menu dropdown-menu-right bg-main">
+                      <a class="dropdown-item" href="visualisarm.html">
+                          <i class="fas fa-edit m-r-5"></i><b> Editar</b>
+                      </a>
+                      <a class="dropdown-item bold" href="visualisarm.html">
+                          <i class="fas fa-user-plus m-r-5"></i><b> Adicionar Testemunha/Informante/Participante</b>
+                      </a>
+                      <a class="dropdown-item" href="visualisarm.html">
+                          <i class="fas fa-file-alt m-r-5"></i><b> Adicionar Evidência Criminal</b>
+                      </a>
+                      <a class="dropdown-item" href="visualisarm.html">
+                          <i class="fas fa-user-injured m-r-5"></i> <b>Adicionar Vítima</b>
+                      </a>
+                      <a class="dropdown-item" href="visualisarm.html">
+                          <i class="fas fa-cubes m-r-5"></i><b> Adicionar Tipo de Bens</b>
+                      </a>
+                      <a class="dropdown-item" href="visualisarm.html">
+                          <i class="fas fa-link m-r-5"></i> <b>Linkar Suspeito</b>
+                      </a>
+                      <a class="dropdown-item" href="visualisarm.html">
+                          <i class="fas fa-file-image m-r-5"></i> <b>Arquivo de Mídia</b>
+                      </a>
+                  </div>
+
+                  </div>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

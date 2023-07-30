@@ -1,1 +1,476 @@
-<p>autos works!</p>
+<!DOCTYPE html>
+<html lang="pt">
+  <body>
+    <ng-template #modal>
+      <div class="modal-header">
+        <h4 class="modal-title">Título do modal</h4>
+        <button
+          type="button"
+          class="close"
+          aria-label="Fechar"
+          (click)="modalRef.hide()"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="id-year">Id-Ano:</label>
+              <input type="text" class="form-control" id="id-year" />
+            </div>
+            <div class="form-group col-md-6">
+              <label for="system-code">Código Sistema:</label>
+              <input type="text" class="form-control" id="system-code" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="date">Data:</label>
+              <input type="text" class="form-control" id="date" />
+
+            </div>
+            <div class="form-group col-md-6">
+              <label for="title">Título:</label>
+              <input type="text" class="form-control" id="title" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="typicity">Tipicidade:</label>
+              <select class="form-control" id="typicity">
+                <option value="">Selecione uma opção</option>
+                <option value="baixa">Baixa</option>
+                <option value="média">Média</option>
+                <option value="alta">Alta</option>
+              </select>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="legal-framework">Enquadramento Legal:</label>
+              <input type="text" class="form-control" id="legal-framework" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="security-level">Nível de Segurança:</label>
+              <input type="text" class="form-control" id="security-level" />
+            </div>
+            <div class="form-group col-md-6">
+              <label for="zone">Zona:</label>
+              <input type="text" class="form-control" id="zone" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-12">
+              <label for="address">Endereço:</label>
+              <input type="text" class="form-control" id="address" />
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="modalRef.hide()"
+        >
+          Cancelar
+        </button>
+        <button type="button" class="btn btn-primary" (click)="onSave()">
+          Salvar
+        </button>
+      </div>
+    </ng-template>
+
+    <div class="col-sm-8 col-9 text-left mb-4 mt-2">
+      <button type="button" class="btn btn-primary bg-success" (click)="openModal(modal)">
+        <i class="fa fa-plus"></i><b> Ocorrência</b>
+      </button>
+      <button
+        type="button"
+        class="btn btn-primary bg-danger"
+        (click)="openModal(modal)"
+      >
+        <i class="fa fa-plus"></i><b> Emergência</b>
+      </button>
+      <button type="button" class="btn btn-primary ">
+        <i class="fa fa-print"></i><b> Imprimir</b>
+      </button>
+    </div>
+    <div class="container m-lg-6">
+      <div class="row filter-section">
+        <div class="col-md-4 filter-column">
+          <div class="filter-field">
+            <div class="input-group mb-1">
+              <input type="date" id="fromDateFilter" class="form-control" [(ngModel)]="fromDateFilter" />
+              <span class="input-group-text">até</span>
+              <input type="date" id="toDateFilter" class="form-control" [(ngModel)]="toDateFilter" />
+            </div>
+          </div>
+
+          <div class="filter-field">
+            <div class="form-check form-check-inline">
+              <input
+                type="checkbox"
+                id="typicityFilterEnabled"
+                class="form-check-input"
+                [(ngModel)]="typicityFilterEnabled"
+              />
+              <label for="typicityFilter"   class="form-check-label">Tipicidade:</label>
+            </div>
+            <div class="form-check form-check-inline" style="width: 250px; margin-left: 34px">
+              <select
+                id="typicityFilter"
+                class="form-select"
+                [(ngModel)]="typicityFilter"
+                [disabled]="!typicityFilterEnabled"
+              >
+                <option value="">Todos</option>
+                <option value="low">Baixa</option>
+                <option value="medium">Média</option>
+                <option value="high">Alta</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="filter-field">
+            <div class="form-check form-check-inline">
+              <input
+                type="checkbox"
+                id="legalFrameworkFilterEnabled"
+                class="form-check-input"
+                [(ngModel)]="legalFrameworkFilterEnabled"
+              />
+              <label for="legalFrameworkFilter" class="form-check-label"
+                >Enquadramento Legal:</label
+              >
+            </div>
+            <div
+              class="form-check form-check-inline"
+              style="width: 235px; margin-left: -35px"
+            >
+              <select id="legalFrameworkFilter" class="form-select"
+               [(ngModel)]="legalFrameworkFilter"
+              [disabled]="!legalFrameworkFilterEnabled">
+                <option value="">Todos</option>
+                <option value="legal1">Legal 1</option>
+                <option value="legal2">Legal 2</option>
+                <option value="legal3">Legal 3</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="filter-field">
+            <div class="form-check form-check-inline">
+              <input
+                type="checkbox"
+                id="securityLevelFilterEnabled"
+                class="form-check-input"
+                [(ngModel)]="securityLevelFilterEnabled"
+
+              />
+              <label for="securityLevelFilter" class="form-check-label"
+                >Nível de Segurança:</label
+              >
+            </div>
+            <div
+              class="form-check form-check-inline"
+              style="width: 236px; margin-left: -18px"
+            >
+              <select id="securityLevelFilter" class="form-select"
+              [(ngModel)]="securityLevelFilter"
+              [disabled]="!securityLevelFilterEnabled">
+                <option value="">Todos</option>
+                <option value="low">Baixo</option>
+                <option value="medium">Médio</option>
+                <option value="high">Alto</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 filter-column">
+          <div class="filter-field">
+            <div class="form-check form-check-inline">
+              <input
+                type="checkbox"
+                id="objectFilterEnabled"
+                class="form-check-input"
+
+                [(ngModel)]="objectFilterEnabled"
+              />
+              <label for="objectFilter" class="form-check-label">Objeto:</label>
+            </div>
+
+            <div class="form-check form-check-inline">
+              <select
+              [(ngModel)]="objectFilter"
+              [disabled]="!objectFilterEnabled"
+                id="objectFilter"
+                class="form-select"
+                style="width: 200px; margin-left: 25px"
+
+              >
+                <option value="">Todos</option>
+                <option value="low">Baixo</option>
+                <option value="medium">Médio</option>
+                <option value="high">Alto</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="filter-field">
+            <div class="form-check form-check-inline">
+              <input
+                type="checkbox"
+                id="damageTypeFilterEnabled"
+                class="form-check-input"
+                [(ngModel)]="damageTypeFilterEnabled"
+              />
+              <label for="damageTypeFilter" class="form-check-label"
+                >Tipo de Dano:</label
+              >
+            </div>
+            <div
+              class="form-check form-check-inline"
+              style="width: 223px; margin-left: -20px"
+            >
+              <select id="damageTypeFilter" class="form-select"
+              [(ngModel)]="damageTypeFilter"
+              [disabled]="!damageTypeFilterEnabled">
+                <option value="">Todos</option>
+                <option value="low">Baixa</option>
+                <option value="medium">Média</option>
+                <option value="high">Alta</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="filter-field">
+            <div class="form-check form-check-inline">
+              <input
+                type="checkbox"
+                id="gravityFilterEnabled"
+                class="form-check-input"
+                [(ngModel)]="gravityFilterEnabled"
+              />
+              <label for="gravityFilter" class="form-check-label"
+                >Gravidade:</label
+              >
+            </div>
+            <div class="form-check form-check-inline">
+              <select
+                id="gravityFilter"
+                class="form-select"
+                style="width: 198px; margin-left: 5px"
+                [(ngModel)]="gravityFilter"
+                [disabled]="!gravityFilterEnabled"
+              >
+                <option value="">Todos</option>
+                <option value="low">Baixa</option>
+                <option value="medium">Média</option>
+                <option value="high">Alta</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="filter-field">
+            <div class="form-check form-check-inline">
+              <input
+                type="checkbox"
+                id="treatmentFilterEnabled"
+                class="form-check-input"
+                [(ngModel)]="treatmentFilterEnabled"
+              />
+              <label for="treatmentFilter" class="form-check-label"
+                >Tratamento:</label
+              >
+            </div>
+            <div class="form-check form-check-inline">
+              <select
+                id="treatmentFilter"
+                class="form-select"
+                style="width: 198px; margin-left: -4px"
+                [(ngModel)]="treatmentFilter"
+                [disabled]="!treatmentFilterEnabled"
+              >
+                <option value="">Todos</option>
+                <option value="low">Baixa</option>
+                <option value="medium">Média</option>
+                <option value="high">Alta</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 filter-column">
+          <div class="filter-field">
+            <div class="form-check form-check-inline">
+              <input
+                type="checkbox"
+                id="provinceFilterEnabled"
+                class="form-check-input"
+                [(ngModel)]="provinceFilterEnabled"
+              />
+              <label for="provinceFilter" class="form-check-label"
+                >Província:</label
+              >
+            </div>
+            <div class="form-check form-check-inline">
+              <select
+                id="provinceFilter"
+                class="form-select"
+                style="width: 188px; margin-left: 80px"
+                [(ngModel)]="provinceFilter"
+                [disabled]="!provinceFilterEnabled"
+
+              >
+                <option value="">Todos</option>
+                <option value="low">Baixa</option>
+                <option value="medium">Média</option>
+                <option value="high">Alta</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="filter-field">
+            <div class="form-check form-check-inline">
+              <input
+                type="checkbox"
+                id="victimNationalityFilterEnabled"
+                class="form-check-input"
+                [(ngModel)]="victimNationalityFilterEnabled"
+              />
+              <label for="victimNationalityFilter" class="form-check-label"
+                >Nacionalidade da Vítima:</label
+              >
+            </div>
+            <div class="form-check form-check-inline">
+              <select
+                id="victimNationalityFilter"
+                class="form-select"
+                style="width: 185px; margin-left: -27px"
+                [(ngModel)]="victimNationalityFilter"
+                [disabled]="!victimNationalityFilterEnabled"
+              >
+                <option value="">Todos</option>
+                <option value="low">Baixa</option>
+                <option value="medium">Média</option>
+                <option value="high">Alta</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="filter-field">
+            <div class="form-check form-check-inline">
+              <input
+                type="checkbox"
+                id="suspectNationalityFilterEnabled"
+                class="form-check-input"
+              />
+              <label for="suspectNationalityFilterEnabled" class="form-check-label"
+                >Nacionalidade do Suspeito:</label
+              >
+            </div>
+            <div class="form-check form-check-inline">
+              <select
+                id="suspectNationalityFilter"
+                class="form-select"
+                style="width: 180px; margin-left: -37px"
+                [(ngModel)]="suspectNationalityFilter"
+                [disabled]="!suspectNationalityFilterEnabled"
+              >
+                <option value="">Todos</option>
+                <option value="low">Baixa</option>
+                <option value="medium">Média</option>
+                <option value="high">Alta</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-12 m-lg-2">
+
+
+      <button class="btn btn-primary" (click)="updateSelectedFilters()">Aplicar Filtros</button>
+    </div>
+      <div class="table-responsive">
+        <table
+          class="table table-border table-striped custom-table datatable mb-0"
+        >
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Ano</th>
+              <th>Id-Ano</th>
+              <th>Código Sistema</th>
+              <th>Data</th>
+              <th>Título</th>
+              <th>Tipicidade</th>
+              <th>Enquadramento Legal</th>
+              <th>Nível de Segurança</th>
+              <th>Zona</th>
+              <th>Endereço</th>
+              <th class="text-right">Operação</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let occurrence of filteredOccurrences">
+              <td>{{ occurrence.Id }}</td>
+              <td>{{ occurrence.Ano }}</td>
+              <td>{{ occurrence.IdAno }}</td>
+              <td>{{ occurrence.Codigo_Sistema }}</td>
+              <td>{{ occurrence.Data }}</td>
+              <td>{{ occurrence.Titulo }}</td>
+              <td>{{ occurrence.Tipicidade }}</td>
+              <td>{{ occurrence.Enquadramento_Legal }}</td>
+              <td>{{ occurrence.Nivel_Seguranca }}</td>
+              <td>{{ occurrence.Zona }}</td>
+              <td>{{ occurrence.Endereco }}</td>
+
+              <td class="text-right">
+                <div class="dropdown dropdown-action">
+                  <a
+                    href="#"
+                    class="action-icon dropdown-toggle"
+                    data-toggle="dropdown"
+                    aria-expanded="false"
+                    ><i class="fa fa-ellipsis-v"></i
+                  ></a>
+                  <div class="dropdown-menu dropdown-menu-right bg-main">
+                    <a class="dropdown-item" href="visualisarm.html">
+                        <i class="fas fa-edit m-r-5"></i><b> Editar</b>
+                    </a>
+                    <a class="dropdown-item bold" href="visualisarm.html">
+                        <i class="fas fa-user-plus m-r-5"></i><b> Adicionar Testemunha/Informante/Participante</b>
+                    </a>
+                    <a class="dropdown-item" href="visualisarm.html">
+                        <i class="fas fa-file-alt m-r-5"></i><b> Adicionar Evidência Criminal</b>
+                    </a>
+                    <a class="dropdown-item" href="visualisarm.html">
+                        <i class="fas fa-user-injured m-r-5"></i> <b>Adicionar Vítima</b>
+                    </a>
+                    <a class="dropdown-item" href="visualisarm.html">
+                        <i class="fas fa-cubes m-r-5"></i><b> Adicionar Tipo de Bens</b>
+                    </a>
+                    <a class="dropdown-item" href="visualisarm.html">
+                        <i class="fas fa-link m-r-5"></i> <b>Linkar Suspeito</b>
+                    </a>
+                    <a class="dropdown-item" href="visualisarm.html">
+                        <i class="fas fa-file-image m-r-5"></i> <b>Arquivo de Mídia</b>
+                    </a>
+                </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+  </body>
+</html>

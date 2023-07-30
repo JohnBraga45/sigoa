@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,7 +17,11 @@ import { ParticipantesComponent } from './sigoa/resources/participantes/particip
 import { MandadosComponent } from './sigoa/resources/mandados/mandados.component';
 import { VitimasComponent } from './sigoa/resources/vitimas/vitimas.component';
 import { DecisaoComponent } from './sigoa/resources/decisao/decisao.component';
- 
+import { FooterComponent } from './sigoa/layout/footer/footer.component';
+import { ModalComponent } from './sigoa/resources/modal/modal.component';
+
+
+
 
 @NgModule({
   declarations: [
@@ -30,12 +37,22 @@ import { DecisaoComponent } from './sigoa/resources/decisao/decisao.component';
     MandadosComponent,
     VitimasComponent,
     DecisaoComponent,
+    FooterComponent,
+    ModalComponent,
+
+
+
+
 
 
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    ModalModule.forRoot(),
+    FormsModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

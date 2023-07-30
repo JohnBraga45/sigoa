@@ -1,1 +1,348 @@
-<p>delituoso works!</p>
+<!DOCTYPE html>
+<html lang="pt">
+  <body>
+    <ng-template #modal>
+      <div class="modal-header">
+        <h4 class="modal-title">Nova Ocorrência</h4>
+        <button type="button" class="close" aria-label="Fechar">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="id-year">Id-Ano:</label>
+              <input type="text" class="form-control" id="id-year" />
+            </div>
+            <div class="form-group col-md-6">
+              <label for="system-code">Código Sistema:</label>
+              <input type="text" class="form-control" id="system-code" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="date">Data/Ocorrência-Hora:</label>
+              <input type="datetime-local" class="form-control" id="date" />
+            </div>
+            <div class="form-group col-md-6">
+              <label for="title">Título:</label>
+              <input type="text" class="form-control" id="date" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="typicity">Tipicidade:</label>
+              <select class="form-control" id="typicity">
+                <option value="">Selecione uma opção</option>
+                <option value="baixa">Baixa</option>
+                <option value="média">Média</option>
+                <option value="alta">Alta</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-12">
+              <label for="address">Enquadramento Legal:</label>
+              <input type="text" class="form-control" id="address" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="security-level">Nível de Segurança:</label>
+              <input type="text" class="form-control" id="security-level" />
+            </div>
+            <div class="form-group col-md-6">
+              <label for="zone">Zona:</label>
+              <input type="text" class="form-control" id="zone" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-12">
+              <label for="address">Endereço:</label>
+              <input type="text" class="form-control" id="address" />
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary">Cancelar</button>
+        <button type="button" class="btn btn-primary">Salvar</button>
+      </div>
+    </ng-template>
+
+    <div class="col-sm-8 col-9 text-left mb-4 mt-2">
+      <button type="button" class="btn btn-primary bg-success">
+        <i class="fa fa-plus"></i><b> Ocorrência</b>
+      </button>
+      <button type="button" class="btn btn-primary bg-danger">
+        <i class="fa fa-plus"></i><b> Emergência</b>
+      </button>
+      <button type="button" class="btn btn-primary">
+        <i class="fa fa-print"></i><b> Imprimir</b>
+      </button>
+    </div>
+    <div class="container m-lg-6">
+      <div class="row filter-section">
+        <div class="col-md-4 filter-column">
+          <div class="filter-field">
+            <div class="input-group mb-1">
+              <input type="date" id="fromDateFilter" class="form-control" />
+              <span class="input-group-text">até</span>
+              <input type="date" id="toDateFilter" class="form-control" />
+            </div>
+          </div>
+
+          <div class="filter-field">
+            <div class="form-check form-check-inline">
+              <input
+                type="checkbox"
+                id="typicityFilterEnabled"
+                class="form-check-input"
+              />
+              <label for="typicityFilter" class="form-check-label"
+                >Duração da Detenção:</label
+              >
+            </div>
+            <div
+              class="form-check form-check-inline"
+              style="width: 200px; margin-left: -35px"
+            >
+              <select id="typicityFilter" class="form-select">
+                <option value="">Todos</option>
+                <option value="low">Baixa</option>
+                <option value="medium">Média</option>
+                <option value="high">Alta</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="filter-field">
+            <div class="form-check form-check-inline">
+              <input
+                type="checkbox"
+                id="legalFrameworkFilterEnabled"
+                class="form-check-input"
+              />
+              <label for="legalFrameworkFilter" class="form-check-label">
+                Nível de Segurança</label
+              >
+            </div>
+            <div
+              class="form-check form-check-inline"
+              style="width: 200px; margin-left: -15px"
+            >
+              <select id="legalFrameworkFilter" class="form-select">
+                <option value="">Todos</option>
+                <option value="legal1">Legal 1</option>
+                <option value="legal2">Legal 2</option>
+                <option value="legal3">Legal 3</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 filter-column">
+          <div class="filter-field">
+            <div class="form-check form-check-inline">
+              <input
+                type="checkbox"
+                id="securityLevelFilterEnabled"
+                class="form-check-input"
+              />
+              <label for="securityLevelFilter" class="form-check-label"
+                >Registrador:</label
+              >
+            </div>
+            <div
+              class="form-check form-check-inline"
+              style="width: 100px; margin-left: 24px"
+            >
+              <input type="file" class="form-input" />
+            </div>
+          </div>
+
+          <div class="filter-field">
+            <div class="form-check form-check-inline">
+              <input
+                type="checkbox"
+                id="objectFilterEnabled"
+                class="form-check-input"
+              />
+              <label for="objectFilter" class="form-check-label"
+                >Província de Evento:</label
+              >
+            </div>
+
+            <div class="form-check form-check-inline">
+              <select
+                id="objectFilter"
+                class="form-select"
+                style="width: 176px; margin-left: 4px"
+              >
+                <option value="">Todos</option>
+                <option value="low">Baixo</option>
+                <option value="medium">Médio</option>
+                <option value="high">Alto</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="filter-field">
+            <div class="form-check form-check-inline">
+              <input
+                type="checkbox"
+                id="damageTypeFilterEnabled"
+                class="form-check-input"
+              />
+              <label for="damageTypeFilter" class="form-check-label"
+                >Nacionalidade da Vítima:</label
+              >
+            </div>
+            <div
+              class="form-check form-check-inline"
+              style="width: 200px; margin-left: -30px"
+            >
+              <select id="damageTypeFilter" class="form-select">
+                <option value="">Todos</option>
+                <option value="low">Baixa</option>
+                <option value="medium">Média</option>
+                <option value="high">Alta</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 filter-column ">
+          <div class="filter-field">
+            <div class="form-check form-check-inline">
+              <input
+                type="checkbox"
+                id="securityLevelFilterEnabled"
+                class="form-check-input"
+              />
+              <label for="securityLevelFilter" class="form-check-label"
+                >Registrador:</label
+              >
+            </div>
+            <div
+              class="form-check form-check-inline"
+              style="width: 100px; margin-left: 24px"
+            ></div>
+          </div>
+
+          <div class="filter-field">
+            <div class="form-check form-check-inline">
+              <input
+                type="checkbox"
+                id="objectFilterEnabled"
+                class="form-check-input"
+              />
+              <label for="objectFilter" class="form-check-label"
+                >Lista Negra</label
+              >
+            </div>
+          </div>
+
+          <div class="filter-field">
+            <div class="form-check form-check-inline">
+              <input
+                type="checkbox"
+                id="damageTypeFilterEnabled"
+                class="form-check-input"
+              />
+              <label for="damageTypeFilter" class="form-check-inline"
+                >Ativos e Passivos</label
+              >
+            </div>
+            <div
+              class="form-check form-check-inline"
+              style="width: 200px; margin-left: -30px">
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-12 m-lg-2">
+      <button class="btn btn-primary">
+        <i class="fa fa-search-plus m-r-5"></i> Aplicar Filtros
+      </button>
+    </div>
+    <div class="table-responsive">
+      <table
+        class="table table-border table-striped custom-table datatable mb-0"
+      >
+        <thead>
+          <tr>
+            <th>Código</th>
+            <th>Nome</th>
+            <th>Pai</th>
+            <th>Mãe</th>
+            <th>Gênero</th>
+            <th>Data de Nascimento</th>
+            <th>Idade</th>
+            <th>País de Origem</th>
+            <th>Primeira Nacionalidade</th>
+
+            <th class="text-right">Operação</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+
+            <td class="text-right">
+              <div class="dropdown dropdown-action">
+                <a
+                  href="#"
+                  class="action-icon dropdown-toggle"
+                  data-toggle="dropdown"
+                  aria-expanded="false"
+                  ><i class="fa fa-ellipsis-v"></i
+                ></a>
+                <div class="dropdown-menu dropdown-menu-right bg-main">
+                  <a class="dropdown-item" href="visualisarm.html">
+                    <i class="fas fa-edit m-r-5"></i><b> Editar</b>
+                  </a>
+                  <a class="dropdown-item bold" href="visualisarm.html">
+                    <i class="fas fa-user-plus m-r-5"></i
+                    ><b> Adicionar Intervenientee</b>
+                  </a>
+                  <a class="dropdown-item" href="visualisarm.html">
+                    <i class="fas fa-file-alt m-r-5"></i
+                    ><b> Adicionar Evidência Criminal</b>
+                  </a>
+
+                  <a class="dropdown-item" href="visualisarm.html">
+                    <i class="fas fa-cubes m-r-5"></i
+                    ><b> Adicionar Tipo de Bens</b>
+                  </a>
+                  <a class="dropdown-item" href="visualisarm.html">
+                    <i class="fas fa-link m-r-5"></i> <b>Linkar Suspeito</b>
+                  </a>
+                  <a class="dropdown-item" href="visualisarm.html">
+                    <i class="fas fa-file-image m-r-5"></i>
+                    <b>Arquivo de Mídia</b>
+                  </a>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
